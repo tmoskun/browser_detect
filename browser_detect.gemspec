@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = []
   s.homepage    = "http://rubygems.org/gems/browser_detect"
   s.summary     = "Detects the client's browser"
-  s.description = "Detects the client's browser"
+  s.description = "Client browser detector"
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "browser_detect"
