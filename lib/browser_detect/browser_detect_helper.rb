@@ -1,4 +1,4 @@
-
+module BrowserDetect
 module BrowserDetectHelper
 
   def browser_is? name
@@ -39,4 +39,5 @@ module BrowserDetectHelper
     end
   end  
 
+end
 end
