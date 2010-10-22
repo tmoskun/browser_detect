@@ -1,0 +1,38 @@
+== Browser Detect
+
+Detects the client's browser
+
+Currently supports,
+* ie
+* gecko
+* konqueror
+* ipad
+* iphone
+* chrome
+* safari
+
+== Using it
+
+Add to Gemfile:
+
+	gem "browser_detect"
+
+Install it:
+
+	bundle install
+	
+To check the type of browser, use browser_name
+@browser_name will return either 'ie', 'gecko', 'opera', 'konqueror', 'ipad', 'iphone', 'chrome', 'safari'
+
+	def index
+		@browser_name = browser_name
+	end
+
+To check if a particular browser is loaded, use browser_name?(name)
+If the browser used is chrome, it will return True
+
+	def index
+		@browser_type = browser_is?("chrome")
+	end
+	
+Choose between 'mozilla', 'ie', or 'webkit'	to be passed to name

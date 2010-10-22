@@ -5,11 +5,11 @@ Gem::Specification.new do |s|
   s.name        = "browser_detect"
   s.version     = "0.0.1"
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["faunzy"]
+  s.authors     = ["rlivsey", "faunzy", "tmlee"]
   s.email       = []
   s.homepage    = "http://rubygems.org/gems/browser_detect"
   s.summary     = "Detects the client's browser"
-  s.description = "Client browser detector"
+  s.description = "Rlivsey's library to detect the client's browser in a form of a gem!"
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "browser_detect"
