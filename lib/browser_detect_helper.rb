@@ -6,6 +6,7 @@ module BrowserDetectHelper
 		return true if name == 'mozilla' && browser_name == 'gecko'
 		return true if name == 'ie' && browser_name.index('ie')
 		return true if name == 'webkit' && %w{safari chrome iphone ipad ipod}.include?(browser_name)
+		return true if name == 'ios' && %w{iphone ipad ipod}.include?(browser_name)
 	end
 
 	def browser_name
@@ -31,7 +32,7 @@ module BrowserDetectHelper
 			elsif ua.index('mozilla/')
 				'gecko'
 			else
-				''
+				'unknown'
 			end
 
 		end
