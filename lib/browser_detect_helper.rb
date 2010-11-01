@@ -7,6 +7,7 @@ module BrowserDetectHelper
 		return true if name == 'ie' && browser_name.index('ie')
 		return true if name == 'webkit' && %w{safari chrome iphone ipad ipod}.include?(browser_name)
 		return true if name == 'ios' && %w{iphone ipad ipod}.include?(browser_name)
+		return true if name == 'robots' && %w{googlebot msnbot yahoobot}.include?(browser_name)
 	end
 
 	def browser_name
@@ -29,6 +30,14 @@ module BrowserDetectHelper
 				'chrome'
 			elsif ua.index('applewebkit/')
 				'safari'
+			elsif ua.index('googlebot/')
+				'googlebot'
+			elsif ua.index('msnbot')
+				'msnbot'
+			elsif ua.index('yahoo! slurp')
+				'yahoobot'
+				
+			# don't put anything below this! everything thinks it's mozilla
 			elsif ua.index('mozilla/')
 				'gecko'
 			else

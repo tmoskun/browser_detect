@@ -14,6 +14,16 @@ class BrowserDetectHelperTest < Test::Unit::TestCase
 		end
 	end
 	
+	must "correctly mock a user agent string" do
+		mock = mock_browser("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)")
+		assert_equal("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)", mock.request.env['HTTP_USER_AGENT'])
+	end
+	
+	must "identify googlebot" do
+		mock = mock_browser("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
+		assert_equal('googlebot', mock.browser_name)
+	end
+	
 	must "correctly identify known user agents" do
 		user_agents(:browsers).each do |browser|
 			mock = mock_browser(browser['ua'])
@@ -38,9 +48,8 @@ class BrowserDetectMock
 	def mock_req
 		req = Object.new
 		metaclass = class << req; self; end
-		metaclass.send(:define_method, :env) do
-			{'HTTP_USER_AGENT' => @user_agent}
-		end
+		user_agent = @user_agent
+		metaclass.send :define_method, :env, Proc.new { {'HTTP_USER_AGENT' => user_agent} }
 		req
 	end
 end
