@@ -30,6 +30,8 @@ module BrowserDetectHelper
 				'safari'
 			elsif ua.index('mozilla/')
 				'gecko'
+			else
+				''
 			end
 
 		end
@@ -49,7 +51,11 @@ module BrowserDetectHelper
 	end
 	
 	def ua
-		@ua ||= request.env['HTTP_USER_AGENT'].downcase
+		@ua ||= begin
+			request.env['HTTP_USER_AGENT'].downcase
+		rescue
+			''
+		end
 	end
 
 end
