@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__)+'/test_helper')
-require 'browser_detect_helper'
+require '../lib/browser_detect/browser_detect_helper'
 
 class BrowserDetectHelperTest < Test::Unit::TestCase
 	fixtures :user_agents
@@ -35,6 +35,7 @@ class BrowserDetectHelperTest < Test::Unit::TestCase
 end
 
 class BrowserDetectMock
+  include BrowserDetect
 	include BrowserDetectHelper
 
 	def initialize(user_agent=nil)
@@ -51,5 +52,5 @@ class BrowserDetectMock
 		user_agent = @user_agent
 		metaclass.send :define_method, :env, Proc.new { {'HTTP_USER_AGENT' => user_agent} }
 		req
-	end
+	end  
 end

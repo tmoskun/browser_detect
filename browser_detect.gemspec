@@ -3,13 +3,15 @@ require File.expand_path("../lib/browser_detect/version", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "browser_detect"
-  s.version     = "0.0.1"
+  s.version     = "0.0.2"
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["rlivsey", "faunzy", "tmlee"]
+  s.authors     = ["rlivsey", "faunzy", "tmlee", "ggilder"]
   s.email       = []
-  s.homepage    = "http://rubygems.org/gems/browser_detect"
-  s.summary     = "Detects the client's browser"
-  s.description = "Rlivsey's library to detect the client's browser in a form of a gem!"
+  s.homepage    = "http://github.com/traction/browser_detect"
+  s.summary     = "A simple rails browser detection plugin"
+  s.description = <<-END
+	Simple rails browser detection based on plugin by Richard Livsey"
+	END
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "browser_detect"
