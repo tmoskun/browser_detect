@@ -5,34 +5,38 @@ _It's like a crystal ball for user agents._
 Detect it.
 ----------
 
-Detects the client's browser using the user agent string in the request
+Detects the client browser using the user agent string that was used to make the page request. 
 
-Currently only supports the following
+Browser Detect currently supports the following browsers and platforms:
 
-	Browsers:
+Browsers:
 
-	  * ie
-	  * gecko
-	  * konqueror
-	  * opera
-	  * ipad
-	  * ipod
-	  * iphone
-	  * chrome
-	  * safari
+  * ie
+  * gecko
+  * konqueror
+  * opera
+  * ipad
+  * ipod
+  * iphone
+  * chrome
+  * safari
 
-	Robots:
+Robots:
 
-	  * googlebot
-	  * msnbot
-	  * yahoo!
+  * googlebot
+  * msnbot
+  * yahoo!
+
+Operating Systems:
+
+  * TODO
 
 Use it.
 -------
 
 Using Bundler, all you need to do is add the source to your Gemfile:
 
-	gem "browser_detect"
+	gem "browser_detect", :git => "git://github.com/traction/browser_detect.git"
 
 Install it:
 -----------
