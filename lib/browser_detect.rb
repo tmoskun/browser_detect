@@ -1,4 +1,5 @@
 module BrowserDetect
+  #Browser groupings <%= browser_is?(:ie) ?  "srsly?" : "thank goodness" %>
 	def browser_is? name
 		name = name.to_s.strip
 		return true if browser_name == name
@@ -9,6 +10,7 @@ module BrowserDetect
 		return true if name == 'robots' && %w{googlebot msnbot yahoobot}.include?(browser_name)
 	end
 
+  # Returns the user agent string as determined by the plugin
 	def browser_name
 		@browser_name ||= begin
 			if ua.index('msie') && !ua.index('opera') && !ua.index('webtv')
@@ -35,8 +37,7 @@ module BrowserDetect
 				'msnbot'
 			elsif ua.index('yahoo! slurp')
 				'yahoobot'
-			
-			# don't put anything below this! everything thinks it's mozilla
+			#Everything thinks it's mozilla, so this goes last
 			elsif ua.index('mozilla/')
 				'gecko'
 			else
@@ -45,7 +46,9 @@ module BrowserDetect
 
 		end
 	end
-
+	
+	# Determine the version of webkit.
+	# Useful for determing rendering capabilties
 	def browser_webkit_version
 		if browser_is? 'webkit'
 			match = ua.match(%r{\bapplewebkit/([\d\.]+)\b})
@@ -59,6 +62,7 @@ module BrowserDetect
 		end
 	end
 
+  #Gather the user agent and store it for use.
 	def ua
 		@ua ||= begin
 			request.env['HTTP_USER_AGENT'].downcase
