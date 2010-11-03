@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__)+'/test_helper')
-require '../lib/browser_detect/browser_detect_helper'
+require '../lib/browser_detect'
 
-class BrowserDetectHelperTest < Test::Unit::TestCase
+class BrowserDetectTest < Test::Unit::TestCase
 	fixtures :user_agents
 	
 	def mock_browser(ua=nil)
@@ -36,7 +36,6 @@ end
 
 class BrowserDetectMock
   include BrowserDetect
-	include BrowserDetectHelper
 
 	def initialize(user_agent=nil)
 		@user_agent = user_agent
