@@ -31,15 +31,12 @@ Operating Systems:
 
   * TODO
 
-Use it.
--------
+Install it:
+-----------
 
 Using Bundler, all you need to do is add the source to your Gemfile:
 
-	gem "browser_detect", :git => "git://github.com/traction/browser_detect.git"
-
-Install it:
------------
+	gem "browser_detect", :require => "browser_detect", :git => 'git://github.com/traction/browser_detect.git'
 
 Then run:
 

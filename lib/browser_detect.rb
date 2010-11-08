@@ -1,5 +1,5 @@
 module BrowserDetect
-  #Browser groupings <%= browser_is?(:ie) ?  "srsly?" : "thank goodness" %>
+  #Browser groupings
 	def browser_is? name
 		name = name.to_s.strip
 		return true if browser_name == name

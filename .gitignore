@@ -1,3 +1,4 @@
 *.gemspec
 .svn
-.yardoc
+.yardoc/
+.bundle/

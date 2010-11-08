@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path("../lib/version", __FILE__)
 files = `git ls-files`.split("\n")
 Gem::Specification.new do |s|
   s.name        = "browser_detect"
-  s.version     = BrowserDetect::VERSION.strip
+  s.version     = File.read(File.expand_path(File.dirname(__FILE__)+ "/VERSION")).strip
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["rlivsey", "faunzy", "tmlee", "ggilder"]
   s.email       = []
