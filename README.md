@@ -73,5 +73,11 @@ Or choose from the following groupings:
  * ie
  * webkit 
  * robots
+
+To check if it's a mobile browser, user browser_is_mobile?
+If it is, it will return true or else false
+	
+	return "This is a mobile browser" if browser_is_mobile?
+	
 	
 
