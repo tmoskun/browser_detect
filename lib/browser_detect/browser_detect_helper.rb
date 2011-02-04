@@ -3,7 +3,7 @@ module BrowserDetectHelper
   
   # Check for Mobility
   def browser_is_mobile?
-    mobile_browsers = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
+    mobile_browsers = ["android", "ipod", "iphone", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "pda","psp","treo"]
     agent = request.headers["HTTP_USER_AGENT"].downcase
     mobile_browsers.each do |m|
       return true if agent.match(m)
@@ -37,6 +37,8 @@ module BrowserDetectHelper
 				'ipod'
 			elsif ua.index('iphone')
 				'iphone'
+			elsif ua.index('ipad')
+				'ipad'
 			elsif ua.index('chrome/')
 				'chrome'
 			elsif ua.index('applewebkit/')
