@@ -35,8 +35,6 @@ module BrowserDetectHelper
 				'konqueror'
 			elsif ua.index('ipod')
 				'ipod'
-			elsif ua.index('ipad')
-				'ipad'
 			elsif ua.index('iphone')
 				'iphone'
 			elsif ua.index('chrome/')
