@@ -55,10 +55,10 @@ module BrowserDetect
 			if (match)
 				match[1].to_f
 			else
-				nil
+				0
 			end
 		else
-			nil
+			0
 		end
 	end
 

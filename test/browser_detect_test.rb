@@ -32,6 +32,18 @@ class BrowserDetectTest < Test::Unit::TestCase
 			end
 		end
 	end
+	
+	must "correctly identify webkit versions" do
+		mock = mock_browser("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_7; en-us) AppleWebKit/533.4 (KHTML, like Gecko) Version/4.1 Safari/533.4")
+		assert(mock.browser_is?('webkit'))
+		assert_equal(533.4, mock.browser_webkit_version)
+	end
+
+	must "handle strange user agent strings for iOS apps" do
+		mock = mock_browser("Times/(null) (iPad; http://www.acrylicapps.com/pulp/)")
+		assert(mock.browser_is?('ios'))
+		assert_equal(0, mock.browser_webkit_version)
+	end
 end
 
 class BrowserDetectMock
