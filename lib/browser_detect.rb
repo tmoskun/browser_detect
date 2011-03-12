@@ -2,52 +2,32 @@ module BrowserDetect
   #Browser groupings
 	def browser_is? name
 		name = name.to_s.strip
-		return true if browser_name == name
-		return true if name == 'mozilla' && browser_name == 'gecko'
-		return true if name == 'ie' && browser_name.index('ie')
-		return true if name == 'webkit' && %w{safari chrome iphone ipad ipod}.include?(browser_name)
-		return true if name == 'ios' && %w{iphone ipad ipod}.include?(browser_name)
-		return true if name == 'robots' && %w{googlebot msnbot yahoobot}.include?(browser_name)
-		return true if name == 'mobile' && browser_is_mobile?
+		return true if browser_agent_query(name)
 	end
-
-  # Returns the user agent string as determined by the plugin
-	def browser_name
-		@browser_name ||= begin
-			if ua.index('msie') && !ua.index('opera') && !ua.index('webtv')
-				'ie'+ua[ua.index('msie')+5].chr
-			elsif ua.index('gecko/')
-				'gecko'
-			elsif ua.index('opera')
-				'opera'
-			elsif ua.index('konqueror')
-				'konqueror'
-			elsif ua.index('ipod')
-				'ipod'
-			elsif ua.index('ipad')
-				'ipad'
-			elsif ua.index('iphone')
-				'iphone'
-			elsif ua.index('android')
-				'android'
-			elsif ua.index('chrome/')
-				'chrome'
-			elsif ua.index('applewebkit/')
-				'safari'
-			elsif ua.index('googlebot/')
-				'googlebot'
-			elsif ua.index('msnbot')
-				'msnbot'
-			elsif ua.index('yahoo! slurp')
-				'yahoobot'
-			#Everything thinks it's mozilla, so this goes last
-			elsif ua.index('mozilla/')
-				'gecko'
-			else
-				'unknown'
-			end
-
+	
+	def browser_agent_query query
+		# not done
+		result = case query
+		when /ie(\d)/
+			ua.index("msie #{$1}") && !ua.index('opera') && !ua.index('webtv')
+		when 'ie'
+			ua.match(/msie \d/) && !ua.index('opera') && !ua.index('webtv')
+		when 'yahoobot'
+			ua.index('yahoo! slurp')
+		when 'mozilla'
+			ua.index('gecko') || ua.index('mozilla')
+		when 'webkit'
+			ua.match(/webkit|safari|chrome|iphone|ipad|ipod/)
+		when 'ios'
+			ua.match(/iphone|ipad|ipod/)
+		when 'robots'
+			ua.match(/googlebot|msnbot/) || browser_agent_query('yahoobot')
+		when 'mobile'
+			browser_agent_query('ios')
+		else
+			ua.index(query)
 		end
+		!result.nil?
 	end
 	
 	# Determine the version of webkit.
@@ -66,7 +46,7 @@ module BrowserDetect
 	end
 	
 	def browser_is_mobile?
-		browser_is?('ios')
+		browser_is?('mobile')
 	end
 
   #Gather the user agent and store it for use.

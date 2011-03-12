@@ -10,7 +10,7 @@ class BrowserDetectTest < Test::Unit::TestCase
 	
 	must "deal with nil user agent gracefully" do
 		assert_nothing_raised do
-			mock_browser.browser_name
+			mock_browser.browser_is?('something')
 		end
 	end
 	
@@ -21,7 +21,7 @@ class BrowserDetectTest < Test::Unit::TestCase
 	
 	must "identify googlebot" do
 		mock = mock_browser("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
-		assert_equal('googlebot', mock.browser_name)
+		assert(mock.browser_is?('googlebot'))
 	end
 	
 	must "correctly identify known user agents" do
