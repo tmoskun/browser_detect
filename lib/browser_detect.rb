@@ -8,6 +8,7 @@ module BrowserDetect
 		return true if name == 'webkit' && %w{safari chrome iphone ipad ipod}.include?(browser_name)
 		return true if name == 'ios' && %w{iphone ipad ipod}.include?(browser_name)
 		return true if name == 'robots' && %w{googlebot msnbot yahoobot}.include?(browser_name)
+		return true if name == 'mobile' && browser_is_mobile?
 	end
 
   # Returns the user agent string as determined by the plugin
@@ -27,6 +28,8 @@ module BrowserDetect
 				'ipad'
 			elsif ua.index('iphone')
 				'iphone'
+			elsif ua.index('android')
+				'android'
 			elsif ua.index('chrome/')
 				'chrome'
 			elsif ua.index('applewebkit/')
@@ -60,6 +63,10 @@ module BrowserDetect
 		else
 			0
 		end
+	end
+	
+	def browser_is_mobile?
+		browser_is?('ios')
 	end
 
   #Gather the user agent and store it for use.
