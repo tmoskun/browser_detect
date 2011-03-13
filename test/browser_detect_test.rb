@@ -42,6 +42,7 @@ class BrowserDetectTest < Test::Unit::TestCase
 	must "handle strange user agent strings for iOS apps" do
 		mock = mock_browser("Times/(null) (iPad; http://www.acrylicapps.com/pulp/)")
 		assert(mock.browser_is?('ios'))
+		assert(mock.browser_is?('webkit'))
 		assert_equal(0, mock.browser_webkit_version)
 	end
 end

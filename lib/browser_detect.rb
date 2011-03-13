@@ -1,13 +1,9 @@
 module BrowserDetect
-	def browser_is? name
-		name = name.to_s.strip
-		browser_agent_query(name)
-	end
-	
-	def browser_agent_query query
-		# define browser groupings here (mobile, robots, etc.)
-		# also complex queries like IE where we weed out fake IE user agents
-		# the default case just checks if user agent contains the query string
+	# Define browser groupings (mobile, robots, etc.)
+	# Also define complex queries like IE where we weed out user agents that pose as IE
+	# The default case just checks if the user agent contains the query string
+	def browser_is? query
+		query = query.to_s.strip.downcase
 		result = case query
 		when /ie(\d)/
 			ua.index("msie #{$1}") && !ua.index('opera') && !ua.index('webtv')
@@ -22,9 +18,9 @@ module BrowserDetect
 		when 'ios'
 			ua.match(/iphone|ipad|ipod/)
 		when 'robots'
-			ua.match(/googlebot|msnbot/) || browser_agent_query('yahoobot')
+			ua.match(/googlebot|msnbot/) || browser_is?('yahoobot')
 		when 'mobile'
-			browser_agent_query('ios') || ua.match(/android|webos|mobile/)
+			browser_is?('ios') || ua.match(/android|webos|mobile/)
 		else
 			ua.index(query)
 		end
@@ -33,22 +29,16 @@ module BrowserDetect
 	
 	# Determine the version of webkit.
 	# Useful for determing rendering capabilities
-	# For instance, Webkit versions lower than 532 don't handle webfonts very well (intermittent crashing when using multiple faces/weights)
+	# For instance, Mobile Webkit versions lower than 532 don't handle webfonts very well (intermittent crashing when using multiple faces/weights)
 	def browser_webkit_version
 		if browser_is? 'webkit'
 			match = ua.match(%r{\bapplewebkit/([\d\.]+)\b})
-			if (match)
-				match[1].to_f
-			else
-				0
-			end
-		else
-			0
-		end
+			match[1].to_f if (match)
+		end or 0
 	end
 	
 	def browser_is_mobile?
-		browser_is?('mobile')
+		browser_is? 'mobile'
 	end
 
 	# Gather the user agent and store it for use.
