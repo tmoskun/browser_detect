@@ -1,8 +1,6 @@
 # Browser Detect
 _It's like a crystal ball for user agents._
 
-## Detect it.
-
 Browser Detect identifies the client browser using the user agent string that was supplied in the page request. Browser Detect searches the user agent string for any string you provide, and it also supports some special groupings and shortcuts:
 
   * ie (Any version of IE, excluding browsers like Opera and WebTV that identify themselves as IE)
