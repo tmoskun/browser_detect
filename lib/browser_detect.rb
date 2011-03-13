@@ -23,7 +23,7 @@ module BrowserDetect
 		when 'robots'
 			ua.match(/googlebot|msnbot/) || browser_agent_query('yahoobot')
 		when 'mobile'
-			browser_agent_query('ios')
+			browser_agent_query('ios') || ua.match(/android|webos|mobile/)
 		else
 			ua.index(query)
 		end
