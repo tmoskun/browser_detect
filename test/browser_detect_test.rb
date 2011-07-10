@@ -10,7 +10,7 @@ class BrowserDetectTest < Test::Unit::TestCase
 	
 	must "deal with nil user agent gracefully" do
 		assert_nothing_raised do
-			mock_browser.browser_name
+			mock_browser.browser_is?('something')
 		end
 	end
 	
@@ -21,7 +21,7 @@ class BrowserDetectTest < Test::Unit::TestCase
 	
 	must "identify googlebot" do
 		mock = mock_browser("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
-		assert_equal('googlebot', mock.browser_name)
+		assert(mock.browser_is?('googlebot'))
 	end
 	
 	must "correctly identify known user agents" do
@@ -31,6 +31,19 @@ class BrowserDetectTest < Test::Unit::TestCase
 				assert(mock.browser_is?(name), "Browser '#{browser['nickname']}' did not match name '#{name}'!")
 			end
 		end
+	end
+	
+	must "correctly identify webkit versions" do
+		mock = mock_browser("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_7; en-us) AppleWebKit/533.4 (KHTML, like Gecko) Version/4.1 Safari/533.4")
+		assert(mock.browser_is?('webkit'))
+		assert_equal(533.4, mock.browser_webkit_version)
+	end
+
+	must "handle strange user agent strings for iOS apps" do
+		mock = mock_browser("Times/(null) (iPad; http://www.acrylicapps.com/pulp/)")
+		assert(mock.browser_is?('ios'))
+		assert(mock.browser_is?('webkit'))
+		assert_equal(0, mock.browser_webkit_version)
 	end
 end
 
