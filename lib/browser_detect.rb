@@ -1,4 +1,4 @@
-require "../lib/browser_detect/operating_systems"
+require File.expand_path(File.dirname(__FILE__)+'/browser_detect/operating_systems')
 module BrowserDetect
   
   include OperatingSystems
