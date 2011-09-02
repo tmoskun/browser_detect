@@ -32,13 +32,21 @@ class BrowserDetectTest < Test::Unit::TestCase
 			end
 		end
 	end
+
+	must "correctly identify operating systems" do
+    user_agents(:browsers).each do |browser|
+      mock = mock_browser(browser['ua'])
+      os = browser["os"]
+      assert_equal(os, mock.os_name, "Browser '#{browser['nickname']}' did not match name '#{os}'!")
+    end
+  end
 	
 	must "correctly identify webkit versions" do
 		mock = mock_browser("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_7; en-us) AppleWebKit/533.4 (KHTML, like Gecko) Version/4.1 Safari/533.4")
 		assert(mock.browser_is?('webkit'))
 		assert_equal(533.4, mock.browser_webkit_version)
 	end
-
+	
 	must "handle strange user agent strings for iOS apps" do
 		mock = mock_browser("Times/(null) (iPad; http://www.acrylicapps.com/pulp/)")
 		assert(mock.browser_is?('ios'))

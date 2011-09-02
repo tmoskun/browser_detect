@@ -1,6 +1,5 @@
-module BrowserDetect
 module BrowserDetectHelper
-  
+   
   # Check for Mobility
   def browser_is_mobile?
     mobile_browsers = ["android", "ipod", "iphone", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "pda","psp","treo"]
@@ -27,6 +26,12 @@ module BrowserDetectHelper
 		@browser_name ||= begin
 			if ua.index('msie') && !ua.index('opera') && !ua.index('webtv')
 				'ie'+ua[ua.index('msie')+5].chr
+			elsif ua.index('webtv')
+        'webtv'
+      elsif ua.index(/(Mobile\/.+Safari)/)
+        'mobile safari'	
+			elsif ua.index('firefox/')
+			  'firefox'
 			elsif ua.index('gecko/')
 				'gecko'
 			elsif ua.index('opera')
@@ -61,6 +66,7 @@ module BrowserDetectHelper
 	
 	# Determine the version of webkit.
 	# Useful for determing rendering capabilties
+
 	def browser_webkit_version
 		if browser_is? 'webkit'
 			match = ua.match(%r{\bapplewebkit/([\d\.]+)\b})
@@ -73,6 +79,7 @@ module BrowserDetectHelper
 			nil
 		end
 	end
+	
 
   #Gather the user agent and store it for use.
 	def ua
@@ -82,5 +89,4 @@ module BrowserDetectHelper
 			''
 		end
 	end
-end
 end

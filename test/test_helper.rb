@@ -2,7 +2,7 @@ require 'rubygems'
 require 'test/unit'
 require 'yaml'
 
-$LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../lib')
+$LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../lib') 
 
 module Test::Unit
   # @ see http://gist.github.com/316780

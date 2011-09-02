@@ -1,4 +1,8 @@
+require "../lib/browser_detect/operating_systems"
 module BrowserDetect
+  
+  include OperatingSystems
+  
 	# Define browser groupings (mobile, robots, etc.)
 	# Also define complex queries like IE where we weed out user agents that pose as IE
 	# The default case just checks if the user agent contains the query string
@@ -26,7 +30,7 @@ module BrowserDetect
 		end
 		not result.nil?
 	end
-	
+		
 	# Determine the version of webkit.
 	# Useful for determing rendering capabilities
 	# For instance, Mobile Webkit versions lower than 532 don't handle webfonts very well (intermittent crashing when using multiple faces/weights)
@@ -40,6 +44,15 @@ module BrowserDetect
 	def browser_is_mobile?
 		browser_is? 'mobile'
 	end
+	
+	def os_name
+     ua = ''
+     ua = request.env['HTTP_USER_AGENT'].downcase if request.env['HTTP_USER_AGENT']
+     OS.each do |os, str|
+       return os if ua =~ Regexp.new(str, true)
+     end
+     return "unknown"
+  end
 
 	# Gather the user agent and store it for use.
 	def ua
@@ -50,4 +63,3 @@ module BrowserDetect
 		end
 	end
 end
->>>>>>> upstream/master
