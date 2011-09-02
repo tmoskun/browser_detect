@@ -4,10 +4,10 @@ Gem::Specification.new do |s|
   s.name        = "browser_detect"
   s.version     = File.read(File.expand_path(File.dirname(__FILE__)+ "/VERSION")).strip
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["rlivsey", "faunzy", "tmlee", "ggilder"]
+  s.authors     = ["rlivsey", "faunzy", "tmlee", "ggilder", "tmoskun"]
   s.email       = []
   s.has_rdoc = 'yard'
-  s.homepage    = "http://github.com/traction/browser_detect"
+  s.homepage    = "http://github.com/tmoskun/browser_detect"
   s.summary     = "A simple rails browser detection plugin"
   s.description = <<-END
 	Simple rails browser detection based on original plugin by Richard Livsey"

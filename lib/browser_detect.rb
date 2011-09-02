@@ -30,6 +30,48 @@ module BrowserDetect
 		end
 		not result.nil?
 	end
+	
+	 def browser_name
+    @browser_name ||= begin
+      if ua.index('msie') && !ua.index('opera') && !ua.index('webtv')
+        'ie'+ua[ua.index('msie')+5].chr
+      elsif ua.index('webtv')
+        'webtv'
+      elsif ua.index(/(Mobile\/.+Safari)/)
+        'mobile safari' 
+      elsif ua.index('firefox/')
+        'firefox'
+      elsif ua.index('gecko/')
+        'gecko'
+      elsif ua.index('opera')
+        'opera'
+      elsif ua.index('konqueror')
+        'konqueror'
+      elsif ua.index('ipod')
+        'ipod'
+      elsif ua.index('iphone')
+        'iphone'
+      elsif ua.index('ipad')
+        'ipad'
+      elsif ua.index('chrome/')
+        'chrome'
+      elsif ua.index('applewebkit/')
+        'safari'
+      elsif ua.index('googlebot/')
+        'googlebot'
+      elsif ua.index('msnbot')
+        'msnbot'
+      elsif ua.index('yahoo! slurp')
+        'yahoobot'
+      #Everything thinks it's mozilla, so this goes last
+      elsif ua.index('mozilla/')
+        'gecko'
+      else
+        'unknown'
+      end
+
+    end
+  end
 		
 	# Determine the version of webkit.
 	# Useful for determing rendering capabilities
@@ -46,8 +88,8 @@ module BrowserDetect
 	end
 	
 	def os_name
-     ua = ''
-     ua = request.env['HTTP_USER_AGENT'].downcase if request.env['HTTP_USER_AGENT']
+     #ua = ''
+     #ua = request.env['HTTP_USER_AGENT'].downcase if request.env['HTTP_USER_AGENT']
      OS.each do |os, str|
        return os if ua =~ Regexp.new(str, true)
      end

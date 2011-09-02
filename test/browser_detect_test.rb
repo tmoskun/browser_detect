@@ -30,6 +30,7 @@ class BrowserDetectTest < Test::Unit::TestCase
 			browser['name'].each do |name|
 				assert(mock.browser_is?(name), "Browser '#{browser['nickname']}' did not match name '#{name}'!")
 			end
+			assert(browser['name'].include?(mock.browser_name),"Browser '#{browser['nickname']}' did not match any of the #{browser["name"].inspect}!")
 		end
 	end
 
