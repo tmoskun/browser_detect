@@ -87,11 +87,11 @@ module BrowserDetect
 		browser_is? 'mobile'
 	end
 	
-        def os_name
-	     OS.each do |os, str|
-	       return os if ua =~ Regexp.new(str, Regexp::IGNORECASE)
-             return "unknown"
-        end
+	def os_name
+     OS.each do |os, str|
+       return os if ua =~ Regexp.new(str, Regexp::IGNORECASE)
+     end
+     return "unknown"
   end
 
 	# Gather the user agent and store it for use.
