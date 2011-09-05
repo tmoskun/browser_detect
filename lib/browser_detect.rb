@@ -90,8 +90,8 @@ module BrowserDetect
         def os_name
 	     OS.each do |os, str|
 	       return os if ua =~ Regexp.new(str, Regexp::IGNORECASE)
+             return "unknown"
         end
-     return "unknown"
   end
 
 	# Gather the user agent and store it for use.
