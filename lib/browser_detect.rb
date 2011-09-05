@@ -39,7 +39,11 @@ module BrowserDetect
         'webtv'
       elsif ua.index(/(Mobile\/.+Safari)/)
         'mobile safari' 
+<<<<<<< HEAD
       elsif ua.index('firefox')
+=======
+      elsif ua.index('firefox/')
+>>>>>>> 8d1b30f... added browser_name and testing to browser_detect
         'firefox'
       elsif ua.index('gecko/')
         'gecko'
@@ -88,6 +92,11 @@ module BrowserDetect
 	end
 	
 	def os_name
+<<<<<<< HEAD
+=======
+     #ua = ''
+     #ua = request.env['HTTP_USER_AGENT'].downcase if request.env['HTTP_USER_AGENT']
+>>>>>>> 8d1b30f... added browser_name and testing to browser_detect
      OS.each do |os, str|
        return os if ua =~ Regexp.new(str, Regexp::IGNORECASE)
      end
