@@ -40,7 +40,6 @@ or in a view:
 	
 
 Don't forget you can use the special groupings listed above to target IE, robots, iOS, etc.
->>>>>>> upstream/master
 	
 	<%= stylesheet_link_tag "ugly_styles" if browser_is?('ie') %>
 	<%= stylesheet_link_tag "even_uglier_styles" if browser_is?('ie6') %>
@@ -57,6 +56,9 @@ There's also a convenience method `browser_is_mobile?` which is just a shortcut 
 For WebKit-based browsers, you can also check the WebKit version using `browser_webkit_version`. This can be useful for determining what rendering capabilities the browser has. For instance, early versions of Mobile WebKit crash intermittently when you use multiple faces or weights of web fonts. So you might prevent your web fonts from rendering on old WebKit versions:
 
 	<%= stylesheet_link_tag "fonts" unless (browser_is?('ios') and browser_webkit_version < 532) %>
+	
+This version also gets OS name and browser name from the user agent string. 
+
 
 ## Contribute!
 
@@ -69,3 +71,5 @@ Originally based on work by [rlivsey](http://github.com/rlivsey). Current contri
   * [faunzy](http://github.com/faunzy)
   * [ggilder](http://github.com/ggilder)
   * [tmlee](http://github.com/tmlee)
+  this version belongs to [tmoskun] http://github.com/tmoskun
+  
