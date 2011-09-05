@@ -71,5 +71,5 @@ Originally based on work by [rlivsey](http://github.com/rlivsey). Current contri
   * [faunzy](http://github.com/faunzy)
   * [ggilder](http://github.com/ggilder)
   * [tmlee](http://github.com/tmlee)
-  this version belongs to [tmoskun] http://github.com/tmoskun
+  * [tmoskun] conributed to this version
   
