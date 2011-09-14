@@ -57,7 +57,11 @@ For WebKit-based browsers, you can also check the WebKit version using `browser_
 
 	<%= stylesheet_link_tag "fonts" unless (browser_is?('ios') and browser_webkit_version < 532) %>
 	
-This version also gets OS name and browser name from the user agent string. 
+This version also gets OS name and browser name from the user agent string. Use as:
+
+BrowserDetect::BrowserObject.new(your_optional_user_agent).get_useragent_info
+
+It returns a hash, with "browser" and "os" fields
 
 
 ## Contribute!
