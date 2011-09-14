@@ -102,4 +102,15 @@ module BrowserDetect
 			''
 		end
 	end
+	
+	class BrowserObject
+	  include BrowserDetect
+	  def initialize(user_agent=nil)
+        @ua = user_agent.downcase if user_agent
+    end
+    
+    def get_useragent_info
+      {:browser => browser_name, :os => os_name}
+    end
+	end
 end
