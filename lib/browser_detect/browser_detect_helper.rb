@@ -48,12 +48,14 @@ module BrowserDetectHelper
 				'chrome'
 			elsif ua.index('applewebkit/')
 				'safari'
-			elsif ua.index('googlebot/')
+			elsif ua.index('googlebot/') || ua.index('Feedfetcher-Google;')
 				'googlebot'
 			elsif ua.index('msnbot')
 				'msnbot'
 			elsif ua.index('yahoo! slurp')
 				'yahoobot'
+			elsif ua.index('Baiduspider/')
+			  'baiduspider'
 			#Everything thinks it's mozilla, so this goes last
 			elsif ua.index('mozilla/')
 				'gecko'
